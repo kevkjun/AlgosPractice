@@ -1,10 +1,10 @@
 # AlgosPractice
 Algorithms practice for interviews. Started on February 13, 2020 while in Master's of CS @ UChicago.
 
-**Languages Done
+**Languages Done**
 * Java
 
-**Languages Planned
+**Languages Planned**
 * Python
 * C++
 
