@@ -21,4 +21,73 @@ class Solution {
         }
         return max;
     }
+
+    // Need to find a way to not store the dp table
+    // Maybe store it in a temp variable to comapare?
+    // Faster than 5% - 813ms
+    // Less than 7.69%
+    public int maxArea2(int[] height) {
+        int len = height.length;
+        
+        int max = 0, currMax = 0;
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                currMax = Math.abs(i-j) * Math.min(height[i], height[j]);
+                if (currMax > max) max = currMax;
+            }
+        }
+        return max;
+    }
+
+    // Tried getting rid of the if statement
+    // Faster than 5%  - 758ms
+    // Less than 7.69%
+    // Only marginal performance improvement - problem must be with one of the for loops - performance should be under O(n*n)
+    public int maxArea3(int[] height) {
+        int len = height.length;
+        
+        int max = 0;
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                max = Math.max(max, Math.abs(i-j) * Math.min(height[i], height[j]));
+            }
+        }
+        return max;
+    }
+
+    // Set limit of i for j b/c we were doing redundant work before
+    // Faster than 6.52%  - 395ms
+    // Less than 5.77%
+    // Again only marginal improvement - need to get rid of one of the for loops
+    public int maxArea4(int[] height) {
+        int len = height.length;
+        
+        int max = 0;
+        for (int i = 0; i < len; i++) {
+            for (int j = i; j < len; j++) {
+                max = Math.max(max, Math.abs(i-j) * Math.min(height[i], height[j]));
+            }
+        }
+        return max;
+    }
+
+    /*
+    General idea is that if a bucket of water is going to be less wide (inidices are closer to each other) then
+    the only way that the volume of water can get larger is if the bucket gets taller; thus, we have to iterate
+    the index that is smaller of the two edges to see if we can get an index that's taller. Leads to O(N) solution.
+    */
+    // Faster than 95.73% - 2ms
+    // Less than 5.77%
+    public int maxArea5(int[] height) {
+        int i = 0, j = height.length - 1, max = 0;
+        while (i < j) {
+            max = Math.max(max, (j-i) * Math.min(height[i], height[j]));
+            if (height[i] < height[j])
+                i++;
+            else
+                j--;
+        }
+        return max;
+    }
 }
+
