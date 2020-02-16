@@ -72,6 +72,7 @@ class Solution {
     }
 
     /*
+    FASTEST SOLUTION
     General idea is that if a bucket of water is going to be less wide (inidices are closer to each other) then
     the only way that the volume of water can get larger is if the bucket gets taller; thus, we have to iterate
     the index that is smaller of the two edges to see if we can get an index that's taller. Leads to O(N) solution.
