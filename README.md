@@ -14,7 +14,7 @@ Problems pulled almost exclusively from Leetcode.
 
 Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) that I found while browsing Git
 
-| Date       | Problem     | Type     | Notes     | 
+| Date           | Problem      | Type         | Notes        | 
 | :------------- | :----------: | -----------: | -----------: | 
 |  Cell Contents | More Stuff   | And Again    | Stuff        | 
 | You Can Also   | Put Pipes In | Like this \| | Stuff        | 
