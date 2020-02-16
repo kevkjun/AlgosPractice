@@ -1,6 +1,8 @@
 # AlgosPractice
 Algorithms practice for interviews. Started on February 13, 2020 while in Master's of CS @ UChicago.
 
+Problems pulled almost exclusively from Leetcode.
+
 **Languages Done**
 * Java
 
