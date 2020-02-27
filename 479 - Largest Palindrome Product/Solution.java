@@ -38,4 +38,47 @@ class Solution {
         
         return num == revertedNumber || num == revertedNumber/10;
     }
+
+    /* 
+    First, create the largest product that you can with the number of digits. Then, try to factor it to see if it is indeed a palindrome.
+    Do this by creating an upper bound and lower bound for the products. This approach also assumes that the palindrome will have 2n digits.
+    
+    Need to study this. Really don't have much of a clue on what's going on here. 
+    */
+    // Faster than 9%
+    // Less than 100%
+    public int largestPalindrome1(int n) {
+        if (n == 1) return 9;
+        
+        // Create the upper and lower bounds for the factors and define the absolute max number which upperbound ^ 2
+        int upperBound = (int) Math.pow(10,n) - 1, lowerBound = upperBound/10; 
+        long maxNumber = (long) upperBound * (long) upperBound;
+        
+        int firstHalf = (int) (maxNumber / (long) Math.pow(10, n));
+        
+        boolean palindromeFound = false;
+        long palindrome = 0;
+        
+        while (!palindromeFound) {
+            palindrome = createPalindrome(firstHalf);
+            
+            for (long i = upperBound; i * i >= palindrome; i--) {
+                if (palindrome / i > maxNumber) 
+                    break;
+                
+                if (palindrome % i == 0) {
+                    palindromeFound = true;
+                    break;
+                }
+            }
+            firstHalf--;
+        }
+        return (int) (palindrome % 1337);
+    }
+    
+    // Create a palindrome given the first half of the palindrome
+    public long createPalindrome(long num) {
+        String str = num + new StringBuilder().append(num).reverse().toString();
+        return Long.parseLong(str);
+    }
 }
