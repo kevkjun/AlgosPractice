@@ -28,4 +28,28 @@ class Solution {
         
         return prev;
     }
+
+    /*
+    Think of reversing the linked list in place. Making the node two nodes away equal to present node. By making the next node null,
+    we are moving the "end" of the linked list up one node at a time. 
+    
+    initial: 1 -> 2 -> 3 -> 4 -> 5
+
+    after reverseList(2): 1 -> 2 <- 3 <- 4 <- 5
+                               |
+                               v
+                              null
+	
+    after operate on 1: null <- 1 <- 2 <- 3 <- 4 <- 5
+    */
+    public ListNode reverseList1(ListNode head) {
+        if (head == null || head.next == null) return head;
+        
+        ListNode newHead = reverseList(head.next);
+        
+        head.next.next = head;
+        head.next = null;
+        
+        return newHead;
+    } 
 }
