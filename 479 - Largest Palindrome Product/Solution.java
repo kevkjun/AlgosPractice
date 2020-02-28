@@ -3,9 +3,11 @@ class Solution {
     There are two ways of tackling this problem: https://leetcode.com/problems/largest-palindrome-product/discuss/96306/Java-solutions-with-two-different-approaches
         1. Build the palindrome and check if it is a valid product (i.e. it factors for all viable factors)
         2. Calculate the product and check if it is a palindrome. This is IMO harder because it's hard to order the products. Use of a priority queue makes sense. 
+
+    This problem maxes out at n=9 for Java - even when using Long - because Java maxes at 19 digits. 
     */
     //=================================================FIRST TRY - DID NOT COMPILE============================================================//
-    public int largestPalindrome(int n) {
+    static int largestPalindrome(int n) {
         if (n == 1) return 9;
         int max = 9;
         for (int i = 1; i < n; i++) {
@@ -30,7 +32,7 @@ class Solution {
     }
     
     // LeetCode 9
-    public boolean isPalindrome(long num) {
+    static boolean isPalindrome(long num) {
         if (num < 0 || (num % 10 == 0 && num != 0)) return false;
         long revertedNumber = 0;
         
@@ -50,7 +52,7 @@ class Solution {
     */
     // Faster than 12%
     // Less than 100%
-    public int largestPalindrome1(int n) {
+    static int largestPalindrome1(int n) {
         if (n == 1) return 9;
         
         // Create the upper and lower bounds for the factors and define the absolute max number which is upperbound ^ 2
@@ -80,7 +82,7 @@ class Solution {
     }
     
     // Create a palindrome given the first half of the palindrome
-    public long createPalindrome(long num) {
+    static long createPalindrome(long num) {
         String str = num + new StringBuilder().append(num).reverse().toString();
         return Long.parseLong(str);
     }
@@ -105,7 +107,7 @@ class Solution {
     */
     // Faster than 32%
     // Less than 100%
-    public int largestPalindrome2(int n) {
+    static int largestPalindrome2(int n) {
         if (n == 1) return 9;
         
         int maxFactor = (int) Math.pow(10, n) - 1;
@@ -121,14 +123,14 @@ class Solution {
         return -1;
     }
     //=================================================MIGHT BE THE ODD SOLUTION============================================================//
-    public int largestPalindrome(int n) {
+    static int largestPalindrome3(int n) {
         if (n == 1) return 9;
         // Even case
         int maxFactor = (int) Math.pow(10, n) - 1;
         long palin = 0;
         
         for (int i = maxFactor; i > maxFactor/10; i--) {
-            palin = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
+            palin = Long.parseLong(i + new StringBuilder().append(i).reverse().toString());
             
             for (long j = maxFactor; j*j >= palin; j--) {
                 if (palin % j == 0) {
@@ -145,7 +147,7 @@ class Solution {
         
         for (int i = maxFactor; i > maxFactor/10; i--) {
             for (int k = 9; k >= 0; k--) {
-                palin = Long.valueOf(i + k + new StringBuilder().append(i).reverse().toString());
+                palin = Long.parseLong(i + k + new StringBuilder().append(i).reverse().toString());
                 
                 for (long j = maxFactor; j*j >= palin; j--) {
                     if (palin % j == 0) 
@@ -154,5 +156,9 @@ class Solution {
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(largestPalindrome3(9));
     }
 }
