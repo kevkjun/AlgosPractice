@@ -95,9 +95,9 @@ class Solution {
         - Create the palindrome which is Long.valueOf(i + new StringBuilder().append(i).reverse().toString())
     Inner for loop:
         - Starting from j = max and iterating downwards - the lower bound is j*j >= palindrome (As to the two numbers we are looking for, 
-        one of them must be x and another one should be u%x. so beyond sqrt(u), it is not possible to find any pairs of numbers that have 
+        one of them must be j and another one should be palindrome%j. so beyond sqrt(j), it is not possible to find any pairs of numbers that have 
         the product of palindrome)
-        - if palindrome % j == 0, then we have found viable factors and we return the palindrome % 1337
+        - if palindrome % j == 0, then we have found viable factors (j and palindrome/j) and we return the palindrome % 1337
         
     Idea is that we iterate one factor down in the outer for loop and iterate the second factor down in the inner for loop. 
     To prevent the product from becoming too small of a palindrome, we exit the inner for loop when Math.sqrt(j) < palindrome which means
@@ -107,18 +107,23 @@ class Solution {
     */
     // Faster than 32%
     // Less than 100%
-    static int largestPalindrome2(int n) {
+    public int largestPalindrome(int n) {
+        // Assuming that n is greater than 0, this is the base case because 9 is product of 3x3 and the largest palindrome possible from multiplying 2 1-digit numbers.
         if (n == 1) return 9;
         
+        // Start by defining what the largest individual factor can be (e.g. for n=3 --> 99)
         int maxFactor = (int) Math.pow(10, n) - 1;
         long pal = 0;
         
-        for (int i = maxFactor; i > maxFactor/10; i--) {
-            pal = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
-            for (long j = maxFactor; j * j >= pal; j--) 
+        // The outer for loop is iterating one factor downwards from the maxFactor until reach a n-1 digit number
+        for (int i = maxFactor; i >= maxFactor/10; i--) {
+            // Create the palindrome by turning it into a string
+            pal = Long.parseLong(i + new StringBuilder().append(i).reverse().toString());
+            // Inner for loop iterates the other factor downwards from the maxFactor until reach value where j^2 < palindrome because this shouldn't be possible 
+            for (long j = maxFactor; j*j >= pal; j--) {
                 if (pal % j == 0) 
                     return (int) (pal % 1337);
-            
+            }
         }
         return -1;
     }
