@@ -27,7 +27,7 @@ class Solution {
         }
         return smallAbsDiff;
     }
-
+    
     public static void main(String[] args) {
         int[] arr = {-1, 5, 100, 6, 19, 7};
         System.out.println(smallDiff(arr, 9));

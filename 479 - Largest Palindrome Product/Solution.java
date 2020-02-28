@@ -2,6 +2,7 @@ class Solution {
     /*
     This is like impossible
     */
+    //=================================================FIRST TRY - DID NOT COMPILE============================================================//
     public int largestPalindrome(int n) {
         if (n == 1) return 9;
         int max = 9;
@@ -38,19 +39,19 @@ class Solution {
         
         return num == revertedNumber || num == revertedNumber/10;
     }
-
+    //=================================================SECOND TRY - FROM LEETCODE============================================================//
     /* 
     First, create the largest product that you can with the number of digits. Then, try to factor it to see if it is indeed a palindrome.
     Do this by creating an upper bound and lower bound for the products. This approach also assumes that the palindrome will have 2n digits.
     
     Need to study this. Really don't have much of a clue on what's going on here. 
     */
-    // Faster than 9%
+    // Faster than 12%
     // Less than 100%
     public int largestPalindrome1(int n) {
         if (n == 1) return 9;
         
-        // Create the upper and lower bounds for the factors and define the absolute max number which upperbound ^ 2
+        // Create the upper and lower bounds for the factors and define the absolute max number which is upperbound ^ 2
         int upperBound = (int) Math.pow(10,n) - 1, lowerBound = upperBound/10; 
         long maxNumber = (long) upperBound * (long) upperBound;
         
@@ -63,7 +64,7 @@ class Solution {
             palindrome = createPalindrome(firstHalf);
             
             for (long i = upperBound; i * i >= palindrome; i--) {
-                if (palindrome / i > maxNumber) 
+                if (palindrome / i <= lowerBound) 
                     break;
                 
                 if (palindrome % i == 0) {
@@ -80,5 +81,40 @@ class Solution {
     public long createPalindrome(long num) {
         String str = num + new StringBuilder().append(num).reverse().toString();
         return Long.parseLong(str);
+    }
+
+    //=================================================MUCH EASIER, MUCH FASTER SOLUTION============================================================//
+    /* 
+    First, define the max factor which is the largest n-digit number (e.g. n=3 --> 999). 
+    Outer for loop: 
+        - Starting from i = max and iterating downwards - the lower bound is max/10 (e.g. n=3 --> 99)
+        - Create the palindrome which is Long.valueOf(i + new StringBuilder().append(i).reverse().toString())
+    Inner for loop:
+        - Starting from j = max and iterating downwards - the lower bound is j*j >= palindrome (As to the two numbers we are looking for, 
+        one of them must be x and another one should be u%x. so beyond sqrt(u), it is not possible to find any pairs of numbers that have 
+        the product of palindrome)
+        - if palindrome % j == 0, then we have found viable factors and we return the palindrome % 1337
+        
+    Idea is that we iterate one factor down in the outer for loop and iterate the second factor down in the inner for loop. 
+    To prevent the product from becoming too small of a palindrome, we exit the inner for loop when Math.sqrt(j) < palindrome which means
+    it is not possible to find any pairs of numbers that have product of palindrome. 
+    
+    Important assumption for this solution is that the answer will have 2n digits (i.e. even).
+    */
+    // Faster than 27%
+    // Less than 100%
+    public int largestPalindrome2(int n) {
+        if (n == 1) return 9;
+        
+        int maxFactor = (int) Math.pow(10, n) - 1;
+        
+        for (int i = maxFactor; i > maxFactor/10; i--) {
+            long pal = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
+            for (long j = maxFactor; j * j >= pal; j--) 
+                if (pal % j == 0) 
+                    return (int) (pal % 1337);
+            
+        }
+        return -1;
     }
 }
