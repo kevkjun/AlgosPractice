@@ -21,16 +21,23 @@ class Solution {
 
     We can actually optimize this by just looking forward to the next node. If we're comparing the next node's value to n, then we don't need to worry about any of the cases posed above. 
     */
-    static ListNode insertSorted(ListNode head, int n) {
-        if (head == null) head = new ListNode(n);
+
+    static ListNode insertNode(ListNode head, int n) {
         ListNode newNode = new ListNode(n);
 
-        if (head.val > n) {
+        // Check if the head is null (the list is empty).
+        if (head == null) return newNode;
+
+        // Check right away if the node can be pushed in at the beginning.
+        if (head.val >= n) {
             newNode.next = head;
             return newNode;
         }
 
         ListNode currHead = head;
+        
+        /* The null check NEEDS to be before the value check because Java shortcircuits the && check if the first clause fails. If the value check is first,
+        there will be a null pointer exception if the next node is null. */
         while (currHead.next != null && currHead.next.val < n) {
             currHead = currHead.next;
         }
@@ -53,7 +60,7 @@ class Solution {
         head.next = new ListNode(3);
         head.next.next = new ListNode(7);
         head.next.next.next = new ListNode(10);
-        ListNode newHead = insertSorted(head, 11);
+        ListNode newHead = insertNode(head, 11);
         print(newHead);
     }
 }
