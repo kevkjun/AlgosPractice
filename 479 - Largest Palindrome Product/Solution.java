@@ -1,6 +1,8 @@
 class Solution {
     /*
-    This is like impossible
+    There are two ways of tackling this problem: https://leetcode.com/problems/largest-palindrome-product/discuss/96306/Java-solutions-with-two-different-approaches
+        1. Build the palindrome and check if it is a valid product (i.e. it factors for all viable factors)
+        2. Calculate the product and check if it is a palindrome. This is IMO harder because it's hard to order the products. Use of a priority queue makes sense. 
     */
     //=================================================FIRST TRY - DID NOT COMPILE============================================================//
     public int largestPalindrome(int n) {
@@ -101,19 +103,55 @@ class Solution {
     
     Important assumption for this solution is that the answer will have 2n digits (i.e. even).
     */
-    // Faster than 27%
+    // Faster than 32%
     // Less than 100%
     public int largestPalindrome2(int n) {
         if (n == 1) return 9;
         
         int maxFactor = (int) Math.pow(10, n) - 1;
+        long pal = 0;
         
         for (int i = maxFactor; i > maxFactor/10; i--) {
-            long pal = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
+            pal = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
             for (long j = maxFactor; j * j >= pal; j--) 
                 if (pal % j == 0) 
                     return (int) (pal % 1337);
             
+        }
+        return -1;
+    }
+    //=================================================MIGHT BE THE ODD SOLUTION============================================================//
+    public int largestPalindrome(int n) {
+        if (n == 1) return 9;
+        // Even case
+        int maxFactor = (int) Math.pow(10, n) - 1;
+        long palin = 0;
+        
+        for (int i = maxFactor; i > maxFactor/10; i--) {
+            palin = Long.valueOf(i + new StringBuilder().append(i).reverse().toString());
+            
+            for (long j = maxFactor; j*j >= palin; j--) {
+                if (palin % j == 0) {
+                    return (int) (palin % 1337);
+                }
+            }
+        }
+        /* 
+        Odd case - I think this is right
+        Reduce the number of digits on the left and right by one compared to the even case and insert another loop for the middle digit
+        */
+        maxFactor = (int) Math.pow(10, n-1) - 1;
+        palin = 0;
+        
+        for (int i = maxFactor; i > maxFactor/10; i--) {
+            for (int k = 9; k >= 0; k--) {
+                palin = Long.valueOf(i + k + new StringBuilder().append(i).reverse().toString());
+                
+                for (long j = maxFactor; j*j >= palin; j--) {
+                    if (palin % j == 0) 
+                        return (int) (palin % 1337);
+                }
+            }
         }
         return -1;
     }
