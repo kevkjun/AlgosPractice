@@ -33,4 +33,28 @@ class Solution {
             helper(t1.left, t2.right) &&
             helper(t1.right, t2.left);
     }
+
+    /*
+    This is like BFS in that we are checking each node and adding its children.
+    The if statements are incredibly important and the order in which we add the nodes is important.
+    */
+    // Faster than 27%
+    // Less than 68%
+    public boolean isSymmetric1(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            TreeNode n = queue.poll();
+            TreeNode n2 = queue.poll();
+            if (n == null && n2 == null) continue;
+            if (n == null || n2 == null) return false;
+            if (n.val != n2.val) return false;
+            queue.offer(n.left);
+            queue.offer(n2.right);
+            queue.offer(n.right);
+            queue.offer(n2.left);
+        }
+        return true;
+    }
 }
