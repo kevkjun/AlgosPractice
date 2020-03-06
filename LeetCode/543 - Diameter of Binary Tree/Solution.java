@@ -14,14 +14,28 @@ class Solution {
         If there was a path between two nodes that didn't pass through a common node (forming an upside down V), it would have to go straight down.
         Then, a strictly longer path could be made by extending the "higher" end all the way up to root.
     
+    DepthFirstSearch - requires a helper function which descends to the lowest it can go for both left and right nodes
+    
     If this was a balanced binary tree, the longest path MUST pass through the root node.
     Edge Cases:
         if root is null then return 0
-
-    // not finished yet
     */
+    // Faster than 100%
+    // Less than 18%
+    int max = 0;
+    
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null || root.left == null || root.right == null) return 0;
-        else return 1 + Math.max(1 + diameterOfBinaryTree(root.left.left), 1 + diameterOfBinaryTree(root.left.right)) + Math.max(1 + diameterOfBinaryTree(root.right.right), 1 + diameterOfBinaryTree(root.right.left));
+        maxDepth(root);
+        return max;
+    }
+    
+    public int maxDepth(TreeNode root) {
+        if (root == null) return 0;
+        
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        
+        max = Math.max(max, left + right);
+        return Math.max(left, right) + 1;
     }
 }
