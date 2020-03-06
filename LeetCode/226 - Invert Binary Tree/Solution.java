@@ -13,6 +13,9 @@ class Solution {
     Switch the left and right branches of the root, then call inverTree on the right and left roots. 
     Essentially trashes the intermediate calls to invertTree until we work back up from the bottom and return the initial root.
     */
+    
+    // Faster than 100%
+    // Less than 5%
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
         
