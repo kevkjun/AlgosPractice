@@ -10,6 +10,8 @@
 class Solution {
     /*
     DFS to search downwards until the sum is found. Can use a HashMap to do this more efficiently.
+    
+    Divide and conquer strategy to run pathSum for the root, the root.left, and root.right.
     */
     // Faster than 29%
     // Less than 88%
