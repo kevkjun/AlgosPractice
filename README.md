@@ -24,5 +24,5 @@ Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) t
 
 | Date           | Problem      | Type         | Notes        | 
 | :------------- | :----------  | :----------- | :----------- | 
-|  Cell Contents | More Stuff   | And Again    | Stuff        | 
+|  March 18 | 1365 - How Many Numbers Are Smaller Than the Current Number   | array, sort    | similar to counting sort - can make faster by keeping track of max number in input array        | 
 | You Can Also   | Put Pipes In | Like this \| | Stuff        | 
