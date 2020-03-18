@@ -20,4 +20,24 @@ class Solution {
         }
         return -1;
     }
+
+    /*
+    Use an array instead of a hashmap to iterate through the string. 
+    */
+    // Faster than 99%
+    // Less than 5%
+    public int firstUniqChar1(String s) {
+        int[] chars = new int[26];
+        char[] word = s.toCharArray();
+        
+        for (char c : word) {
+            chars[c-'a']++;
+        }
+        
+        for (int i = 0; i < word.length; i++) {
+            if (chars[word[i]-'a'] == 1) return i;
+        }
+        
+        return -1;
+    }
 }
