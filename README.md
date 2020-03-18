@@ -22,6 +22,6 @@ Started on February 13, 2020 while in Master's of CS @ UChicago.
 
 Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) that I found while browsing Git
 
-| Date &nbsp;&nbsp           | Problem      | Type         | Notes        | 
+| Date           | Problem      | Type         | Notes        | 
 | :------------- | :----------  | :----------- | :----------- | 
 |  Mar 18 | 1365 - Numbers Smaller than Current   | array, sort    | similar to counting sort - can make faster by keeping track of max number in input array        | 
