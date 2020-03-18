@@ -24,4 +24,4 @@ Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) t
 
 | Date &nbsp;&nbsp           | Problem      | Type         | Notes        | 
 | :------------- | :----------  | :----------- | :----------- | 
-|  Mar 18, 20 | 1365 - Numbers Smaller than Current   | array, sort    | similar to counting sort - can make faster by keeping track of max number in input array        | 
+|  Mar 18 | 1365 - Numbers Smaller than Current   | array, sort    | similar to counting sort - can make faster by keeping track of max number in input array        | 
