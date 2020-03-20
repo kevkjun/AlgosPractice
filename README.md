@@ -24,4 +24,5 @@ Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) t
 
 | Date           | Problem      | Type         | Notes        | 
 | :------------- | :----------  | :----------- | :----------- | 
-|  Mar 18 | 1365 - Numbers Smaller than Current   | array, sort    | similar to counting sort| 
+|  Mar 18 | 1365 - Numbers Smaller than Current   | array, sort    | counting sort| 
+|  Mar 20 | 202 - Happy Numbers   | linked list, hashset, cycle    | finding cycle in linked list | 
