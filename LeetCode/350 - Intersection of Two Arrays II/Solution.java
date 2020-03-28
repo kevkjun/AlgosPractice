@@ -6,6 +6,8 @@ class Solution {
     This answer changes the shorter array (nums1) because we will be updating the shorter array to contain the intersection 
     from index 0 to k of nums 1 (number of intersection points).
     */
+    // Faster than 97%
+    // Less than 6%
     public int[] intersect(int[] nums1, int[] nums2) {
         // We want the smaller array to be first so that we can put that one into the HashMap
         if (nums1.length > nums2.length) return intersect(nums2, nums1);
