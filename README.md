@@ -29,3 +29,4 @@ Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) t
 |  Mar 27 | 350 - Intersection of Two Arrays II   |  arrays, hashmap  | keep hashmap with counts of smaller array |
 |  Mar 28 | 88 - Merge Sorted Array   |  arrays, sorting  | two pointers from beginning or end | 
 |  Mar 29 | 26 - Remove Duplicates from Sorted Array   |  arrays | two pointers | 
+|  Mar 30 | 160 - Intersection of Two Linked Lists   |  linked lists | two pointers | 
