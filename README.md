@@ -30,3 +30,4 @@ Modeled after this [absolute beast](https://github.com/calvinchankf/AlgoDaily) t
 |  3/28 | 88 - Merge Sorted Array   |  arrays, sorting  | two pointers from beginning or end | 
 |  3/29 | 26 - Remove Duplicates from Sorted Array   |  arrays | two pointers | 
 |  3/30 | 160 - Intersection of Two Linked Lists   |  linked lists | two pointers | 
+|  4/1 | 172 - Factorial Trailing Zeroes |  math | optimizing mod/division operations | 
